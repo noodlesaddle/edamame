@@ -59,7 +59,13 @@ export default function Home() {
             href="#"
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
           >
-            <Activity className="h-6 w-6" />
+            <Image
+              src="/logo.jpeg"
+              className="rounded-full"
+              alt="logo"
+              height={50}
+              width={50}
+            />
             <span className="sr-only">Файнди Мед Нутри ХХК</span>
           </Link>
           <Link
