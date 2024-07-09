@@ -199,7 +199,7 @@ export default function Home() {
                 <Image
                   src="/banner1.jpg"
                   alt="Image 2"
-                  width={800}
+                  width={1800}
                   height={400}
                   className="w-full h-full object-cover"
                 />
@@ -208,7 +208,7 @@ export default function Home() {
                 <Image
                   src="/banner1.jpg"
                   alt="Image 3"
-                  width={800}
+                  width={1800}
                   height={400}
                   className="w-full h-full object-cover"
                 />
