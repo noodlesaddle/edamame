@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Findy Nutri Med",
+  title: "Findy Med Nutri",
   description:
     "Enhancing community health with exceptional care and personalized service.",
 };
