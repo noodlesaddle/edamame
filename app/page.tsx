@@ -35,11 +35,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import * as COMMONS from "@/components/commons";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
+
 export default function Home() {
   const [sliderRef, instanceRef] = useKeenSlider(
     {
@@ -51,10 +53,11 @@ export default function Home() {
       // add plugins here
     ]
   );
+
   return (
-    <div className="flex min-h-screen w-full flex-col  ">
-      <header className="sticky z-40 justify-between md:px-24 top-0 flex h-16 items-center gap-4 border-b bg-background px-4 ">
-        <nav className="hidden  flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+    <div className="flex min-h-screen w-full flex-col">
+      <header className="sticky top-0 z-40 flex h-16 items-center justify-between gap-4 border-b bg-background px-4 md:px-24">
+        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
           <Link
             href="#"
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
@@ -159,163 +162,117 @@ export default function Home() {
           </DropdownMenu>
         </div>
       </header>
-      <main className="flex flex-1 md:px-24 flex-col gap-4 p-4 md:gap-8 md:p-8">
-        <section id="search" className="md:h-screen mt-16">
-          <Card x-chunk="dashboard-01-chunk-0 ">
+      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 md:px-24">
+        <section id="search" className="mt-16 h-1/2 lg:h-screen">
+          <Card x-chunk="dashboard-01-chunk-0">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 Та юу хайж байна вэ?
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="w-full flex gap-4 justify-around">
+              <div className="w-full md:flex gap-4 md:justify-around flex-row justify-center">
                 <Input
                   type="search"
                   placeholder="Халуун бууруулах наалт..."
                   className="pl-8 w-full"
+                  aria-label="Search"
                 />
-                <Button asChild className="ml-auto gap-1">
+                <Button
+                  asChild
+                  className="ml-auto w-full my-4 md:m-0 md:w-32 gap-1"
+                >
                   <Link href="#">
                     Хайлт
-                    <Search className="h-4 w-4" />
+                    <Search className="h-4 w-4" aria-label="Search Icon" />
                   </Link>
                 </Button>
               </div>
             </CardContent>
           </Card>
 
-          <div className="w-full mt-48">
+          <div className="w-full lg:mt-48 mt-12">
             <div ref={sliderRef} className="keen-slider rounded-lg h-[400px]">
-              <div className="keen-slider__slide ">
-                <Image
-                  src="/banner1.jpg"
-                  alt="Image 1"
-                  width={1800}
-                  height={400}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="keen-slider__slide">
-                <Image
-                  src="/banner1.jpg"
-                  alt="Image 2"
-                  width={1800}
-                  height={400}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="keen-slider__slide">
-                <Image
-                  src="/banner1.jpg"
-                  alt="Image 3"
-                  width={1800}
-                  height={400}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              {COMMONS.IMAGES.map((image, index) => (
+                <div key={index} className="keen-slider__slide">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    className="w-full h-full object-cover"
+                    priority
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
-        <section id="products" className="md:h-screen">
-          <h1 className="text-2xl font-bold text-center mb-12">
+        <section id="products" className=" mt-24 md:mb-12">
+          <h1 className="md:text-3xl text-2xl font-bold text-center mb-12">
             Шинэ Бүтээгдэхүүнүүд
           </h1>
           <div className="grid gap-4 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
-            <Card className="overflow-hidden w-full md:w-[400px]">
-              <CardHeader>
-                <CardTitle>
-                  {" "}
-                  Акуафор <br />
-                  <span className="text-muted-foreground text-lg">
-                    Aquaphor{" "}
-                  </span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-2">
-                  <Image
-                    alt="Product image"
-                    className="aspect-square w-full rounded-md object-cover"
-                    height="300"
-                    src="/image.png"
-                    width="300"
-                  />
-                </div>
-                <div className="my-4">
-                  <CardDescription>
-                    Хүүхдийн арьсны нуралтад зориулсан тос
-                  </CardDescription>
-                  <p className="text-lg font-bold my-2 "> ₮ 80,000</p>
-                  <div className="flex gap-2 mt-2">
-                    <Button variant="outline" className="bg-muted" size="icon">
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                    <Button variant="ghost" size="icon">
-                      <p className="h-4 w-4">1</p>
-                    </Button>
-                    <Button variant="outline" className="bg-muted" size="icon">
-                      <Plus className="h-4 w-4" />
-                    </Button>
+            {COMMONS.PRODUCTS.map((product, index) => (
+              <Card key={index} className="overflow-hidden w-full md:w-[400px]">
+                <CardHeader>
+                  <CardTitle>
+                    {product.title} <br />
+                    <span className="text-muted-foreground text-lg">
+                      {product.subtitle}
+                    </span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-2">
+                    <Image
+                      alt="Product image"
+                      className="aspect-square w-full rounded-md object-cover"
+                      height="300"
+                      src={product.image}
+                      width="300"
+                    />
                   </div>
-                </div>
-                <Button className="w-full" size="lg">
-                  Сагсанд хийх <ShoppingCart className="h-4 w-4 mx-2" />
-                </Button>
-              </CardContent>
-            </Card>
-            <Card className="overflow-hidden w-full md:w-[400px]">
-              <CardHeader>
-                <CardTitle>
-                  Кобаяши Халууны наалт <br />
-                  <span className="text-muted-foreground text-lg">
-                    熱さまシート{" "}
-                  </span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-2">
-                  <Image
-                    alt="Product image"
-                    className="aspect-square w-full rounded-md object-cover"
-                    height="300"
-                    src="/product2.png"
-                    width="300"
-                  />
-                </div>
-                <div className="my-4">
-                  <CardDescription>
-                    Хүүхдийн халуун бууруулах наалт
-                  </CardDescription>
-                  <p className="text-lg font-bold my-2 "> ₮ 80,000</p>
-                  <div className="flex gap-2 mt-2">
-                    <Button variant="outline" className="bg-muted" size="icon">
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                    <Button variant="ghost" size="icon">
-                      <p className="h-4 w-4">1</p>
-                    </Button>
-                    <Button variant="outline" className="bg-muted" size="icon">
-                      <Plus className="h-4 w-4" />
-                    </Button>
+                  <div className="my-4">
+                    <CardDescription>{product.description}</CardDescription>
+                    <p className="text-lg font-bold my-2">{product.price}</p>
+                    <div className="flex gap-2 mt-2">
+                      <Button
+                        variant="outline"
+                        className="bg-muted"
+                        size="icon"
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <Button variant="ghost" size="icon">
+                        <p className="h-4 w-4">1</p>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="bg-muted"
+                        size="icon"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
-                </div>
-                <Button className="w-full" size="lg">
-                  Сагсанд хийх <ShoppingCart className="h-4 w-4 mx-2" />
-                </Button>
-              </CardContent>
-            </Card>
+                  <Button className="w-full" size="lg">
+                    Сагсанд хийх <ShoppingCart className="h-4 w-4 mx-2" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
-        <section id="location">
-          <div className="w-full mt-12 h-[400px] rounded-lg">
+        <section className="my-16 md:my-24" id="location">
+          <div className="w-full h-[480px] rounded-lg">
             <iframe
               width="100%"
               height="100%"
               frameBorder="0"
-              style={{ border: 0 }}
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d171094.7140709828!2d106.57879860051882!3d47.929518258910385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x217a47fcaaaea20d%3A0x6b5ddc2efa067d29!2z0JzTqdC90LPTqdC9INCX0q_SryDQrdC80L3RjdC70Y3Qsw!5e0!3m2!1sen!2sjp!4v1720519972456!5m2!1sen!2sjp"
               aria-hidden="true"
-            ></iframe>
+            />
           </div>
         </section>
         <section id="contact" className="my-12">
