@@ -17,9 +17,9 @@ export function FloatingNavDemo() {
   const navItems = [
     {
       name: (
-        <div>
+        <>
           <Image src={logo} alt="Logo" width={40} height={40} />{" "}
-        </div>
+        </>
       ),
       link: "/",
       icon: <IconHome className="h-6 w-6 text-blue-950 dark:text-white" />,
