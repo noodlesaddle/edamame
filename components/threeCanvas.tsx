@@ -68,6 +68,12 @@ const CanvasComponent = () => {
     light2.castShadow = true;
     scene.add(light2);
 
+    // Add a bright light on the left side
+    const brightLight = new THREE.DirectionalLight(0xffffff, 5);
+    brightLight.position.set(-2000, 500, 0); // Position the light on the left side
+    brightLight.castShadow = true;
+    scene.add(brightLight);
+
     createScene();
 
     // RENDERER
@@ -223,17 +229,7 @@ const CanvasComponent = () => {
     };
   }, []);
 
-  return (
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "100vh",
-        overflow: "hidden",
-      }}
-      ref={mountRef}
-    ></div>
-  );
+  return <section ref={mountRef}></section>;
 };
 
 export default CanvasComponent;
