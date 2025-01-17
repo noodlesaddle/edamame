@@ -3,10 +3,13 @@
 
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import React, { useRef, useEffect } from "react";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
+import React, { useRef, useEffect, useState } from "react";
 
 const CanvasComponent = () => {
   const mountRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const SHADOW_MAP_WIDTH = 2048,
@@ -31,9 +34,27 @@ const CanvasComponent = () => {
 
     const container = mountRef.current;
 
+    // Loading Manager
+    const loadingManager = new THREE.LoadingManager();
+    loadingManager.onStart = () => {
+      console.log("Loading started");
+    };
+    loadingManager.onLoad = () => {
+      console.log("Loading complete");
+      setLoading(false);
+    };
+    loadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
+      console.log(
+        `Loading file: ${url}. Loaded ${itemsLoaded} of ${itemsTotal} files.`
+      );
+    };
+    loadingManager.onError = (url) => {
+      console.log(`There was an error loading ${url}`);
+    };
+
     // CAMERA
     camera = new THREE.PerspectiveCamera(
-      23,
+      24,
       SCREEN_WIDTH / SCREEN_HEIGHT,
       NEAR,
       FAR
@@ -126,19 +147,12 @@ const CanvasComponent = () => {
         x,
         y,
         z,
-        fudgeColor,
+        color,
         massOptimization
       ) {
         mesh = mesh.clone();
         mesh.material = mesh.material.clone();
-
-        if (fudgeColor) {
-          mesh.material.color.offsetHSL(
-            0,
-            Math.random() * 0.5 - 0.25,
-            Math.random() * 0.5 - 0.25
-          );
-        }
+        mesh.material.color.set(color); // Set the color of the horse
 
         mesh.speed = speed;
 
@@ -174,15 +188,24 @@ const CanvasComponent = () => {
         morphs.push(mesh);
       }
 
-      const gltfLoader = new GLTFLoader();
+      const gltfLoader = new GLTFLoader(loadingManager);
       gltfLoader.load(
         "https://threejs.org/examples/models/gltf/Horse.glb",
         function (gltf) {
           const mesh = gltf.scene.children[0];
           const clip = gltf.animations[0];
 
+          const colors = [
+            0x8b4513, // SaddleBrown
+            0xa0522d, // Sienna
+            0xd2b48c, // Tan
+            0x000000, // Black
+            0x808080, // Gray
+            0xffffff, // White
+          ]; // Array of natural horse colors
+
           for (let i = -300; i < 301; i += 10) {
-            // Reduce the number of horses
+            const color = colors[Math.floor(Math.random() * colors.length)]; // Randomly select a color
             addMorph(
               mesh,
               clip,
@@ -191,7 +214,7 @@ const CanvasComponent = () => {
               100 - Math.random() * 2000,
               FLOOR,
               i,
-              true,
+              color,
               true
             );
           }
@@ -213,7 +236,7 @@ const CanvasComponent = () => {
         morph.position.x -= morph.speed * delta; // Change direction to east
 
         if (morph.position.x < -2000) {
-          morph.position.x = 1000 + Math.random() * 500;
+          morph.position.x = 3000 + Math.random() * 1000;
         }
       }
 
@@ -229,7 +252,36 @@ const CanvasComponent = () => {
     };
   }, []);
 
-  return <section ref={mountRef}></section>;
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+      ref={mountRef}
+    >
+      {loading && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            zIndex: 10,
+          }}
+        >
+          <p>Loading...</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default CanvasComponent;
