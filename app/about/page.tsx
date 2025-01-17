@@ -127,15 +127,16 @@ const timelineItems = [
 ];
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 relative">
-      <Navbar />
+    <div className="min-h-screen bg-gray-100 text-sky-950 dark:bg-gray-900 relative">
       <BackgroundBeams />
-
+      <Navbar />
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 relative z-10">
+      <main className="container mx-auto px-4 py-8  ">
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>About Our Company</CardTitle>
+            <CardTitle className="text-yellow-600 text-xl">
+              About Our Company
+            </CardTitle>
             <CardDescription>
               Bridging Mongolia and Japan through premium horse meat
             </CardDescription>
@@ -156,7 +157,9 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
-              <CardTitle>Our Mission</CardTitle>
+              <CardTitle className="text-yellow-600 text-xl">
+                Our Mission
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p>
@@ -169,7 +172,9 @@ export default function AboutPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Why Choose Us?</CardTitle>
+              <CardTitle className="text-yellow-600 text-xl">
+                Why Choose Us?
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="list-disc pl-5 space-y-2">

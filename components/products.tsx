@@ -10,8 +10,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BackgroundGradient } from "@/components/ui/background-gradient";
-import { HoverEffect } from "@/components/ui/text-hover-effect";
+import { Navbar } from "./navBar";
+import { BackgroundBeams } from "./ui/background-beams";
 
 const products = [
   {
@@ -130,7 +130,7 @@ const products = [
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen overflow-auto bg-gray-100 dark:bg-gray-900 text-sky-950">
       <header className="bg-transparent dark:bg-gray-800  p-6">
         <h1 className="text-3xl font-bold mt-12 text-center">
           Our Premium Horse Meat Products
@@ -138,9 +138,10 @@ export default function ProductsPage() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
+        <BackgroundBeams />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {products.map((product) => (
-            <Card className="w-full h-full">
+            <Card className="w-full h-full text-sky-950">
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <CardTitle>{product.name}</CardTitle>
@@ -159,7 +160,7 @@ export default function ProductsPage() {
                 </p>
               </CardContent>
               <CardFooter>
-                <Button className="w-full">Add to Cart</Button>
+                <Button className="w-full bg-yellow-600">Add to Cart</Button>
               </CardFooter>
             </Card>
           ))}
