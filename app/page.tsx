@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import CanvasComponent from "../components/threeCanvas";
+
 import { Navbar } from "@/components/navBar";
 import HeroSection from "@/components/heroSection";
 import ProductsPage from "@/components/products";

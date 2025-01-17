@@ -1,8 +1,7 @@
 "use client";
 
-import { Spotlight } from "@/components/ui/spotlight";
 import { ProcessCard } from "@/components/ui/process-card";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+
 import { Button } from "@/components/ui/button";
 import {
   Beef,

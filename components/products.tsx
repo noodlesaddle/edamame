@@ -10,8 +10,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Navbar } from "./navBar";
-import { BackgroundBeams } from "./ui/background-beams";
 
 const products = [
   {
@@ -138,7 +136,6 @@ export default function ProductsPage() {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <BackgroundBeams />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {products.map((product) => (
             <Card className="w-full h-full text-sky-950">

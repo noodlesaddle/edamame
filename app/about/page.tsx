@@ -9,9 +9,6 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import { BackgroundBeams } from "@/components/ui/background-beams";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { Navbar } from "@/components/navBar";
 import { Timeline } from "@/components/ui/timeline";
 
@@ -128,7 +125,6 @@ const timelineItems = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gray-100 text-sky-950 dark:bg-gray-900 relative">
-      <BackgroundBeams />
       <Navbar />
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8  ">
