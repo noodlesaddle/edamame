@@ -118,13 +118,6 @@ export default function ProcessPage() {
           maintain the cold chain throughout the journey.
         </p>
       </section>
-
-      {/* Footer */}
-      <footer className="relative bg-white dark:bg-gray-800 text-center p-6 mt-12">
-        <p className="text-sm text-gray-600 dark:text-gray-400">
-          &copy; 2025 Mongolian Horse Meat Exports. All rights reserved.
-        </p>
-      </footer>
     </div>
   );
 }
