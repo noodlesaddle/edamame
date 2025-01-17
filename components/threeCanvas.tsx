@@ -253,15 +253,7 @@ const CanvasComponent = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "100vh",
-        overflow: "hidden",
-      }}
-      ref={mountRef}
-    >
+    <div className="absolute inset-0 z-0" ref={mountRef}>
       {loading && (
         <div
           style={{
