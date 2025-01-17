@@ -2,15 +2,16 @@
 import { useEffect } from "react";
 import { motion, stagger, useAnimate } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Button } from "./button";
 
 export const TextGenerateEffect = ({
   words,
+  text,
   className,
   filter = true,
   duration = 0.5,
 }: {
   words: string;
+  text: string;
   className?: string;
   filter?: boolean;
   duration?: number;
@@ -63,9 +64,7 @@ export const TextGenerateEffect = ({
             transition={{ duration: 1, delay: 0.5 }}
             className="font-thin text-base mt-6 text-yellow-600"
           >
-            Sourced from the pristine grasslands of Mongolia, our horse meat
-            meets the highest international standards, offering unmatched
-            quality, flavor, and sustainability.
+            {text}
           </motion.p>
         </div>
       </div>
