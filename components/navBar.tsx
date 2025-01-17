@@ -15,14 +15,19 @@ export function Navbar() {
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center space-x-2">
             <img src="/logo1.png" alt="BolorKhee" className="h-10 w-10" />
-            {/* <span className="font-bold">BolorKhee</span> */}
+            <span className="font-bold text-sky-950">BolorKhee LLC</span>
           </Link>
         </div>
-        <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
+        <nav className="hidden text-sky-950 md:flex items-center space-x-8 text-sm font-medium">
           <Link href="/about">About Us</Link>
-          <Link href="/products">Our Products</Link>
-          <Link href="/process">Our Process</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="/#products">Our Products</Link>
+          <Link href="/#process">Our Process</Link>
+          <Link
+            href="/#contact"
+            className="text-yellow-600 border border-yellow-600 rounded-full px-4 py-2"
+          >
+            Contact
+          </Link>
         </nav>
         <div className="flex items-center space-x-4">
           <Sheet>
@@ -52,11 +57,13 @@ function MobileNav() {
       <Link href="/" className="font-bold  mb-12">
         <img src="/logo1.png" alt="BolorKhee" className="h-12 w-12" />
       </Link>
-      <nav className="flex flex-col space-y-6">
+      <nav className="flex text-sky-950 flex-col space-y-6">
         <Link href="/about">About Us</Link>
-        <Link href="/products">Our Products</Link>
-        <Link href="/process">Our Process</Link>
-        <Link href="/contact">Contact</Link>
+        <Link href="/#products">Our Products</Link>
+        <Link href="/#process">Our Process</Link>
+        <Link className="text-yellow-600 font-bold" href="/#contact">
+          Contact
+        </Link>
       </nav>
     </div>
   );

@@ -26,11 +26,11 @@ export function LanguageSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
-          <GlobeIcon className="h-[1.2rem] w-[1.2rem]" />
+          <GlobeIcon className="h-[1.2rem] w-[1.2rem] text-yellow-600" />
           <span className="sr-only">Switch language</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="text-sky-950">
         <DropdownMenuItem onClick={() => switchLanguage("en")}>
           English
         </DropdownMenuItem>
